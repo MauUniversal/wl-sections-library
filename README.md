@@ -1,77 +1,54 @@
-# React + TypeScript + Vite
+# @wl/sections-library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Librería de secciones y UI compartida para plataformas white-label (casino).
 
-Currently, two official plugins are available:
+## Qué exporta
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Secciones: `GlobalNav`, `Footer`, `HeroBanner`, `FeaturedPromotions`, `Recommendations`, `SportsEvents`, `CasinoGames`, `LatestWinners`, …
+- `sectionRegistry` / `sectionCatalog` / `SectionType`
+- Primitivos UI: `Button`, `Carousel`, `IconButton`, …
+- `theme` / `createTheme`
 
-## React Compiler
+## Peer dependencies
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+El host debe proveer:
 
-Note: This will impact Vite dev & build performances.
+- `react` ^19
+- `react-dom` ^19
+- `styled-components` ^6
 
-## Expanding the ESLint configuration
+Envolvé la app con `ThemeProvider` (podés usar `createTheme()` de esta lib o un theme compatible).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Install desde GitHub (privado)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install git+ssh://git@github-universalsoft/MauUniversal/wl-sections-library.git#v0.1.0
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+O en `package.json`:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```json
+"@wl/sections-library": "git+ssh://git@github-universalsoft/MauUniversal/wl-sections-library.git#v0.1.0"
 ```
+
+> El host SSH `github-universalsoft` debe estar en tu `~/.ssh/config` (IdentityFile de la cuenta MauUniversal).
+
+Al instalar desde git, el script `prepare` corre `build:lib` y genera `dist/`.
+
+## Desarrollo local (playground)
+
+```bash
+npm install
+npm run dev
+```
+
+- Docs UI: `/docs_components`
+- Docs secciones: `/docs_sections`
+
+## Build de la librería
+
+```bash
+npm run build:lib
+```
+
+Salida: `dist/wl-sections-library.js`, `dist/wl-sections-library.cjs`, tipos en `dist/library/index.d.ts`.

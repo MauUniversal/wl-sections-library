@@ -3,6 +3,13 @@ import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import path from "path";
 
+const peerExternals = [
+  "react",
+  "react-dom",
+  "react/jsx-runtime",
+  "styled-components",
+];
+
 export default defineConfig({
   plugins: [
     react(),
@@ -27,6 +34,7 @@ export default defineConfig({
   },
   build: {
     emptyOutDir: true,
+    sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, "src/library/index.ts"),
       name: "WlSectionsLibrary",
@@ -35,12 +43,18 @@ export default defineConfig({
         `wl-sections-library.${format === "es" ? "js" : "cjs"}`,
     },
     rollupOptions: {
-      external: [
-        "react",
-        "react-dom",
-        "react/jsx-runtime",
-        "styled-components",
-      ],
+      external: (id) =>
+        peerExternals.some(
+          (name) => id === name || id.startsWith(`${name}/`),
+        ),
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          "react/jsx-runtime": "jsxRuntime",
+          "styled-components": "styled",
+        },
+      },
     },
   },
 });
