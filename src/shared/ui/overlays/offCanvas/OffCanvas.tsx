@@ -1,0 +1,83 @@
+import { useEffect, type ReactNode } from "react";
+import { createPortal } from "react-dom";
+import {
+    OffCanvasBackdropElement,
+    OffCanvasPanelElement,
+    OffCanvasRootElement,
+    type OffCanvasSide,
+} from "./OffCanvas.elements";
+
+export type { OffCanvasSide };
+
+interface OffCanvasProps {
+    open: boolean;
+    onClose: () => void;
+    side?: OffCanvasSide;
+    width?: number;
+    children: ReactNode;
+    "aria-label"?: string;
+}
+
+export const OffCanvas = ({
+    open,
+    onClose,
+    side = "left",
+    width = 300,
+    children,
+    "aria-label": ariaLabel = "Panel",
+}: OffCanvasProps) => {
+    useEffect(() => {
+        if (!open) {
+            return;
+        }
+
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [open]);
+
+    useEffect(() => {
+        if (!open) {
+            return;
+        }
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                onClose();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [open, onClose]);
+
+    if (typeof document === "undefined") {
+        return null;
+    }
+
+    return createPortal(
+        <OffCanvasRootElement $open={open} aria-hidden={!open}>
+            <OffCanvasBackdropElement
+                type="button"
+                $open={open}
+                aria-label="Cerrar panel"
+                tabIndex={open ? 0 : -1}
+                onClick={onClose}
+            />
+            <OffCanvasPanelElement
+                $open={open}
+                $side={side}
+                $width={width}
+                role="dialog"
+                aria-modal={open || undefined}
+                aria-label={ariaLabel}
+            >
+                {children}
+            </OffCanvasPanelElement>
+        </OffCanvasRootElement>,
+        document.body,
+    );
+};

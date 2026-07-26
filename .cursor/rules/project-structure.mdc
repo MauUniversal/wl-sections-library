@@ -1,0 +1,38 @@
+---
+description: Estructura de carpetas, stack y convenciones de la librería de secciones
+alwaysApply: true
+---
+
+# Estructura del proyecto
+
+Librería Vite + React 19 + TypeScript + styled-components de secciones White Label.
+Incluye playground de documentación y build publicable.
+
+## Dónde va cada cosa
+
+```
+src/
+  library/     -> API pública exportada por el package
+  app/         -> router del playground
+  features/    -> playground features (docsComponents, docsSections)
+  sections/    -> SECCIONES exportables (producto)
+    globalNav/ -> chrome global (header)
+    footer/    -> chrome global (footer)
+    home/      -> secciones exclusivas del home
+  shared/      -> design system interno
+    theme/ styles/ types/ utils/ ui/
+  assets/icons -> barrel único de iconos
+```
+
+## Nomenclatura
+
+- Componentes: `PascalCase`, carpeta `camelCase`.
+- UI = `Componente.tsx` + `Componente.elements.ts`.
+- Named exports; `export default` solo en `App.tsx`.
+- Interfaces sin prefijo `I`.
+- Comillas dobles y punto y coma.
+- Sin comentarios que narren el código.
+
+## Stack
+
+React 19, styled-components 6, react-icons, react-router-dom (solo playground).

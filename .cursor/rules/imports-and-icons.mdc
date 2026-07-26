@@ -1,0 +1,41 @@
+---
+description: Aliases de imports, iconos centralizados y reglas de TypeScript estricto
+globs: src/**/*.ts,src/**/*.tsx
+alwaysApply: true
+---
+
+# Imports, iconos y TypeScript
+
+## Aliases
+
+Usa aliases para imports cross-module (configurados en `vite.config.ts` y `tsconfig.app.json`):
+
+| Alias | Ruta |
+|-------|------|
+| `@/` | `src/` |
+| `@shared/` | `src/shared/` |
+| `@app/` | `src/app/` |
+| `@features/` | `src/features/` |
+| `@assets/` | `src/assets/` |
+| `@sections/` | `src/sections/` |
+
+- Dentro del mismo módulo/carpeta, usa imports relativos (`./Componente.elements`).
+- Cross-module: siempre alias, nunca `../../../`.
+
+## Iconos
+
+- `react-icons` se importa SOLO en `src/assets/icons/index.ts`, que re-exporta con nombres semánticos + sufijo `Icon`.
+- Consumir siempre desde `@assets/icons`, nunca `react-icons` directo:
+
+```tsx
+import { MenuIcon, CloseIcon } from "@assets/icons";
+```
+
+- ¿Icono nuevo? Agrégalo al barrel con su alias, no lo importes suelto.
+
+## TypeScript (config estricta)
+
+- `verbatimModuleSyntax`: usa `import type { X }` para imports de solo-tipos.
+- `noUnusedLocals` / `noUnusedParameters`: sin variables ni parámetros sin usar.
+- `erasableSyntaxOnly`: prohibido `enum` y `namespace`; usa union types u objetos `as const`.
+- Tras editar, no dejes errores de lint (ReadLints).

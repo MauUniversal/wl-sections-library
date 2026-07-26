@@ -1,0 +1,39 @@
+---
+description: Todo componente nuevo en shared/ui debe documentarse en el catálogo /docs_components
+globs: src/shared/ui/**,src/features/docsComponents/**
+alwaysApply: true
+---
+
+# Catálogo de componentes (`/docs_components`)
+
+Cuando creés o actualices un componente en `src/shared/ui/`, **también** lo documentás en el feature `docsComponents` (ruta `/docs_components`). No hace falta un `README.md` ni capturas por componente.
+
+## Alcance
+
+- **Sí:** componentes de `@shared/ui` (design system reutilizable).
+- **No:** UI interna de un feature (`src/features/<feature>/components`). Esos no van al catálogo.
+- **No:** secciones de `src/sections/` (esas van a `/docs_sections`).
+
+## Checklist al crear un componente shared
+
+1. Implementá el componente (`Componente.tsx` + `Componente.elements.ts`).
+2. Agregá datos de docs en `src/features/docsComponents/data.ts` (o un módulo de data por componente si crece):
+   - código de uso
+   - tabla de props
+   - tamaños / variantes / estados (si aplica)
+3. Creá `src/features/docsComponents/components/<nombre>Section/<Nombre>Section.tsx` con:
+   - Uso (`DocCodeBlock`)
+   - Props / tablas
+   - Preview gráfico de **todas** las variantes, tamaños y estados relevantes
+4. Montá la sección en `DocsComponentsPage.tsx` dentro de `DocsComponentsSectionsElement`.
+5. Reutilizá `DocSection`, `DocSectionBlock`, `DocCodeBlock` y los styled de `docSection/` — no inventes otro layout de docs.
+
+## Actualizar un componente existente
+
+Si cambiás API (props, variantes, tamaños) o el look, actualizá la sección de docs en el mismo cambio (data + preview).
+
+## Referencia viva
+
+- Página: `/docs_components`
+- Feature: `src/features/docsComponents/`
+- Ejemplo: `ButtonSection` + datos `button*` en `data.ts`

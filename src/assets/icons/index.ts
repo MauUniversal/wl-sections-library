@@ -1,0 +1,57 @@
+import { IoMenu, IoSearchOutline, IoFlagOutline, IoChevronDown, IoChevronBack, IoChevronForward, IoClose, IoDocumentTextOutline, IoChatbubbleOutline } from "react-icons/io5";
+import { TbWallet, TbTrendingUp, TbHeadphones } from "react-icons/tb";
+import { HiMiniArrowDownTray } from "react-icons/hi2";
+import { FiBell, FiUser, FiFacebook, FiYoutube, FiBookOpen, FiEye, FiEyeOff, FiInstagram, FiPercent } from "react-icons/fi";
+import { LuDices, LuTrophy, LuTv, LuTicket, LuSparkles, LuFlame, LuUsers } from "react-icons/lu";
+import { PiCirclesFourFill, PiBroadcastBold, PiChat } from "react-icons/pi";
+import { RiTwitterLine } from "react-icons/ri";
+import { HiOutlineMail } from "react-icons/hi";
+import { IoIosArrowForward, IoIosPlay } from "react-icons/io";
+import { ImSpinner2 } from "react-icons/im";
+import { BiGift } from "react-icons/bi";
+
+//Custom Icons
+export { HorseRiderIcon } from "./customIcons/HorseRiderIcon";
+export { GreyhoundIcon } from "./customIcons/GreyhoundIcon";
+export { ChariotIcon } from "./customIcons/ChariotIcon";
+export { StarIcon } from "./customIcons/StarIcon";
+
+//React Icons
+export const MenuIcon = IoMenu;
+export const CloseIcon = IoClose;
+export const WalletIcon = TbWallet;
+export const DownloadIcon = HiMiniArrowDownTray;
+export const BellIcon = FiBell;
+export const UserIcon = FiUser;
+export const SearchIcon = IoSearchOutline;
+export const DicesIcon = LuDices;
+export const TrophyIcon = LuTrophy;
+export const FlagIcon = IoFlagOutline;
+export const CirclesFourIcon = PiCirclesFourFill;
+export const FacebookIcon = FiFacebook;
+export const TwitterIcon = RiTwitterLine;
+export const InstagramIcon = FiInstagram;
+export const YoutubeIcon = FiYoutube;
+export const MailIcon = HiOutlineMail;
+export const TvIcon = LuTv;
+export const BookOpenIcon = FiBookOpen;
+export const ArrowForwardIcon = IoIosArrowForward;
+export const PlayIcon = IoIosPlay;
+export const TicketIcon = LuTicket;
+export const EyeIcon = FiEye;
+export const EyeOffIcon = FiEyeOff;
+export const LoadingSpinnerIcon = ImSpinner2;
+export const ChevronDownIcon = IoChevronDown;
+export const ChevronBackIcon = IoChevronBack;
+export const ChevronForwardIcon = IoChevronForward;
+export const SparklesIcon = LuSparkles;
+export const FlameIcon = LuFlame;
+export const UsersIcon = LuUsers;
+export const DocumentTextIcon = IoDocumentTextOutline;
+export const PercentIcon = FiPercent;
+export const TrendingUpIcon = TbTrendingUp;
+export const GiftIcon = BiGift;
+export const ChatbubbleIcon = IoChatbubbleOutline;
+export const BroadcastIcon = PiBroadcastBold;
+export const HeadphonesIcon = TbHeadphones;
+export const ChatIcon = PiChat;

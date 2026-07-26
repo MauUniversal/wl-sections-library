@@ -1,0 +1,30 @@
+---
+description: Contratos de la librería de secciones (registry, boundaries, API pública)
+alwaysApply: true
+---
+
+# Librería de secciones
+
+## Boundaries
+
+- `sections/*` puede usar `@shared/*` y `@assets/icons`.
+- `sections/*` NO importa de `@features/*`.
+- `features/docs*` puede importar sections y shared solo para documentar.
+- Consumidores externos solo usan el entry `src/library/index.ts` (o el package build).
+
+## Scope de carpetas
+
+- `sections/globalNav/` y `sections/footer/` → chrome de layout (slots fijos).
+- `sections/home/<nombre>/` → bloques exclusivos del home.
+- Exportá home desde `sections/home/index.ts`; el registry sigue en `sections/registry.ts`.
+
+## Registry
+
+- Toda sección exportable tiene un `SectionType` único en `sections/types.ts`.
+- Debe existir en `sectionRegistry` y `sectionCatalog` (con `scope: "global" | "home"`).
+- No renderizar secciones “sueltas” sin registro si están pensadas para el JSON del BO.
+
+## Composición
+
+- Las secciones se arman con componentes de `@shared/ui` + tokens del theme.
+- No hardcodear colores/espaciados que existan en el theme.

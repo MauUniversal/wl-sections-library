@@ -1,0 +1,51 @@
+---
+description: Patrón de componentes UI con styled-components (archivo .tsx + .elements.ts, transient props)
+globs: src/shared/ui/**,src/sections/**,src/app/**,**/*.elements.ts
+alwaysApply: true
+---
+
+# Componentes con styled-components
+
+Todo componente UI se divide en DOS archivos en su propia carpeta:
+
+- `Componente.tsx` -> componente React: recibe props públicas (sin `$`) y compone.
+- `Componente.elements.ts` -> los `styled.*`, con el sufijo `Element` en el nombre.
+
+## Transient props (`$`)
+
+Las props que solo afectan estilo se pasan al styled component con prefijo `$` para que NO lleguen al DOM.
+
+```tsx
+// Button.tsx
+interface ButtonProps {
+  variant?: "primary" | "ghost";
+  children: React.ReactNode;
+}
+
+export const Button = ({ variant = "primary", children }: ButtonProps) => (
+  <ButtonElement $variant={variant}>{children}</ButtonElement>
+);
+```
+
+```ts
+// Button.elements.ts
+import styled from "styled-components";
+
+interface ButtonElementProps {
+  $variant: "primary" | "ghost";
+}
+
+export const ButtonElement = styled.button<ButtonElementProps>`
+  background: ${({ theme, $variant }) =>
+    $variant === "primary" ? theme.color.brand.primary : "transparent"};
+  border-radius: ${({ theme }) => theme.radii.medium};
+  transition: ${({ theme }) => theme.transitions.fast};
+`;
+```
+
+## Reglas
+
+- Nunca uses valores CSS hardcodeados que existan en el theme (colores, radios, sombras, espaciado, breakpoints).
+- Media queries con `theme.breakpoints`: `@media (max-width: ${({ theme }) => theme.breakpoints.tablet})`.
+- Estilos globales solo en `shared/styles/GlobalStyles.tsx` con `createGlobalStyle`.
+- Usá `background` (shorthand), no `background-color`.

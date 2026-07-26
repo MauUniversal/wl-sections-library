@@ -1,0 +1,32 @@
+---
+description: Uso del theme (design tokens) y utilidades de estilo
+globs: src/**/*.ts,src/**/*.tsx
+alwaysApply: true
+---
+
+# Theme y design tokens
+
+Fuente única de tokens: `@shared/theme/Theme.ts`. Se accede vía `({ theme }) => ...` en styled-components o importando `theme` / `createTheme` directamente.
+
+## Tokens disponibles
+
+- `color.brand.primary` -> color de marca (vía `createTheme(primaryColor)` / JSON de marca; default `#E91E91`).
+- `color.primary` / `color.secondary` / `color.neutral` -> escalas 50..900 (uso general; no son los tokens exactos del Button).
+- `color.button.primary` / `color.button.secondary` -> estados de botón: `default`, `hover`, `pressed`, `disabled`, `loading`.
+- `color.danger` / `color.success` / `color.warning` -> `default`, `hover`, `pressed`, `disabled`, `loading` + `soft` (`text`, `background`, `border`). `danger.highlight` para números/indicadores.
+- `color.info.soft` -> `text`, `background`, `border`.
+- `color.text` -> `primary`, `secondary`, `tertiary` (= brand), `placeholder`.
+- `color.background` -> `primary`, `secondary`, `tertiary`, `quaternary`.
+- `color.overlay` -> backdrop de modales.
+- `color.border` -> `primary` (layout), `field` (borde default de inputs/tags).
+- `typography.fontSizes.*` (usar `pxToRem`), `typography.fontWeight.*`, `typography.fontFamily.*`.
+- `radii.*` (`medium` = 8px), `shadows.*`, `zIndex.*`, `transitions.*`, `breakpoints.*`.
+- `spacing(factor)` -> `factor * 8px` (sistema de 8px). Ej: `spacing(2)` = `16px`.
+
+## Reglas
+
+- Tamaños de fuente y radios en `rem` vía `pxToRem(px)` de `@shared/utils/styles-utils`.
+- Al agregar un token nuevo al theme, agrégalo también a `DefaultTheme` en `shared/types/styled.d.ts` (con `typeof theme.X`).
+- No dupliques valores: el rosa de marca vive solo en `brand.primary`; `text.tertiary` y `background.tertiary` lo referencian.
+- `background` (shorthand), NO `background-color`, para soportar tanto colores como gradientes.
+- No hay `VITE_BRAND`: el primary se setea con `createTheme(primaryColor)` o el JSON de marca del consumidor.

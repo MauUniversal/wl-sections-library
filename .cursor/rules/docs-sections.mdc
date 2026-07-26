@@ -1,0 +1,24 @@
+---
+description: Toda sección nueva en src/sections debe documentarse en /docs_sections y registrarse en sectionRegistry
+globs: src/sections/**,src/features/docsSections/**
+alwaysApply: true
+---
+
+# Catálogo de secciones (`/docs_sections`)
+
+Cuando creés o actualices una sección en `src/sections/`, en el mismo cambio:
+
+1. Implementá `Seccion.tsx` + `Seccion.elements.ts` (+ `index.ts` de carpeta).
+2. Registrala en `src/sections/registry.ts` con su `SectionType`.
+3. Exportala desde `src/sections/index.ts` y `src/library/index.ts`.
+4. Documentala en `features/docsSections` (uso, `type` del JSON, props, preview).
+5. Montá la sección de docs en `DocsSectionsPage`.
+
+## Alcance
+
+- **Sí:** bloques de `src/sections/` (exportables al BO / white-label).
+- **No:** primitivos de `@shared/ui` (esos van a `/docs_components`).
+
+## Contrato
+
+El `type` string del registry es el mismo que viaja en el JSON de configuración de marca.

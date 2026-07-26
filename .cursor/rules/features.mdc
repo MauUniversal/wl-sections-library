@@ -1,0 +1,46 @@
+---
+description: Cómo se organizan y trabajan los features del playground
+globs: src/features/**
+alwaysApply: false
+---
+
+# Features
+
+Cada feature es una unidad autocontenida en `src/features/<feature>/`.
+
+En esta librería, los features típicos son solo de playground (`docsComponents`, `docsSections`). Las **secciones de producto NO van en `features/`**: viven en `src/sections/`.
+
+## Estructura interna
+
+```
+src/features/<feature>/
+  components/     -> UI específica del feature (par .tsx + .elements.ts)
+  hooks/          -> hooks propios del feature
+  types.ts        -> tipos/interfaces del feature
+  data.ts         -> datos/constantes/config del feature
+  index.ts        -> API pública: re-exporta lo que el feature expone
+```
+
+Crea solo las carpetas que el feature necesite. No fuerces `services/` ni axios hasta que haga falta.
+
+## Límites (boundaries)
+
+- Un feature **NO importa** de otro feature. Están aislados.
+- Si dos features necesitan compartir algo (UI, hook, util, tipo), ese código **sube a `src/shared/`**.
+- La app consume features **solo por su `index.ts` público**; nunca imports profundos a archivos internos.
+- `docsComponents` / `docsSections` pueden importar `@sections/*` y `@shared/*` solo para documentar.
+
+```tsx
+// ✅ bien
+import { DocsComponentsPage } from "@features/docsComponents";
+// ❌ mal (import profundo)
+import { ButtonSection } from "@features/docsComponents/components/buttonSection/ButtonSection";
+// ❌ mal (cross-feature)
+import { DocsSectionsPage } from "@features/docsSections"; // dentro de docsComponents
+```
+
+## UI
+
+- UI propia del feature -> en su `components/`.
+- Solo lo genérico y reutilizable entre features va a `@shared/ui`.
+- Aplica el patrón `.tsx` + `.elements.ts` y el theme igual que en `shared/ui`.
