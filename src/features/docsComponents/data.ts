@@ -303,8 +303,8 @@ export const floatingButtonProps = [
     {
         name: "bottomOffset",
         type: "number",
-        default: "100",
-        description: "Distancia al bottom del viewport en px (solo con position fixed).",
+        default: "—",
+        description: "Si se pasa, fija el botón a N px del bottom. Sin prop = centrado vertical.",
     },
     {
         name: "iconSize",

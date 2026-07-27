@@ -12,7 +12,7 @@ interface FloatingButtonElementProps {
     $variant: FloatingButtonVariant;
     $side: FloatingButtonSide;
     $offset: number;
-    $bottomOffset: number;
+    $bottomOffset?: number;
     $position: FloatingButtonPosition;
     $iconSize?: number;
 }
@@ -73,7 +73,14 @@ export const FloatingButtonElement = styled.button<FloatingButtonElementProps>`
         $position === "fixed"
             ? css`
                   position: fixed;
-                  bottom: ${pxToRem($bottomOffset)};
+                  ${$bottomOffset !== undefined
+                      ? css`
+                            bottom: ${pxToRem($bottomOffset)};
+                        `
+                      : css`
+                            top: 50%;
+                            transform: translateY(-50%);
+                        `}
                   ${$side === "right"
                       ? css`
                             right: ${pxToRem($offset)};

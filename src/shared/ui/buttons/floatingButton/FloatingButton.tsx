@@ -30,7 +30,7 @@ export const FloatingButton = ({
     size = "M",
     position = "fixed",
     offset = 16,
-    bottomOffset = 100,
+    bottomOffset,
     iconSize,
     type = "button",
     ...rest

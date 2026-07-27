@@ -24,7 +24,7 @@ export const FloatingButtonSection = () => {
     return (
         <DocSection
             title="FloatingButton"
-            description="Botón flotante fijo al borde del viewport (por defecto 100px desde el bottom). Reutilizable con cualquier ícono de @assets/icons. aria-label obligatorio."
+            description="Botón flotante fijo al borde del viewport (centrado en vertical por defecto; bottomOffset para anclar al bottom). Reutilizable con cualquier ícono de @assets/icons. aria-label obligatorio."
         >
             <DocSectionBlock title="Uso">
                 <DocCodeBlock code={floatingButtonUsageCode} />
