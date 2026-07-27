@@ -12,6 +12,7 @@ interface FloatingButtonElementProps {
     $variant: FloatingButtonVariant;
     $side: FloatingButtonSide;
     $offset: number;
+    $bottomOffset: number;
     $position: FloatingButtonPosition;
     $iconSize?: number;
 }
@@ -68,11 +69,11 @@ export const FloatingButtonElement = styled.button<FloatingButtonElementProps>`
     cursor: pointer;
     transition: ${({ theme }) => theme.transitions.fast};
     ${({ $variant, theme }) => getVariantStyles($variant, theme)}
-    ${({ $position, $side, $offset }) =>
+    ${({ $position, $side, $offset, $bottomOffset }) =>
         $position === "fixed"
             ? css`
                   position: fixed;
-                  top: 50%;
+                  bottom: ${pxToRem($bottomOffset)};
                   ${$side === "right"
                       ? css`
                             right: ${pxToRem($offset)};
@@ -81,7 +82,6 @@ export const FloatingButtonElement = styled.button<FloatingButtonElementProps>`
                             left: ${pxToRem($offset)};
                         `}
                   z-index: ${({ theme }) => theme.zIndex.floating};
-                  transform: translateY(-50%);
               `
             : css`
                   position: relative;
@@ -98,10 +98,7 @@ export const FloatingButtonElement = styled.button<FloatingButtonElementProps>`
     }
 `;
 
-export const FloatingButtonIconElement = styled.span<{
-    $size: FloatingButtonSize;
-    $iconSize?: number;
-}>`
+export const FloatingButtonIconElement = styled.span<{ $size: FloatingButtonSize; $iconSize?: number }>`
     display: inline-flex;
     align-items: center;
     justify-content: center;

@@ -19,6 +19,7 @@ interface FloatingButtonProps
     size?: FloatingButtonSize;
     position?: FloatingButtonPosition;
     offset?: number;
+    bottomOffset?: number;
     iconSize?: number;
 }
 
@@ -29,6 +30,7 @@ export const FloatingButton = ({
     size = "M",
     position = "fixed",
     offset = 16,
+    bottomOffset = 100,
     iconSize,
     type = "button",
     ...rest
@@ -40,6 +42,7 @@ export const FloatingButton = ({
             $size={size}
             $position={position}
             $offset={offset}
+            $bottomOffset={bottomOffset}
             $iconSize={iconSize}
             type={type}
             {...rest}
