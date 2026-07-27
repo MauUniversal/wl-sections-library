@@ -26,7 +26,7 @@ export const OffCanvasSection = () => {
     return (
         <DocSection
             title="OffCanvas"
-            description="Panel deslizante con backdrop. Sale desde left o right, bloquea scroll del body y cierra con overlay o Escape."
+            description="Panel deslizante con backdrop. Sale desde left, right o bottom, bloquea scroll del body y cierra con overlay o Escape."
         >
             <DocSectionBlock title="Uso">
                 <DocCodeBlock code={offCanvasUsageCode} />

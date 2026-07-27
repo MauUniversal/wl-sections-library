@@ -12,13 +12,16 @@ Fuente única de tokens: `@shared/theme/Theme.ts`. Se accede vía `({ theme }) =
 
 - `color.brand.primary` -> color de marca (vía `createTheme(primaryColor)` / JSON de marca; default `#E91E91`).
 - `color.primary` / `color.secondary` / `color.neutral` -> escalas 50..900 (uso general; no son los tokens exactos del Button).
-- `color.button.primary` / `color.button.secondary` -> estados de botón: `default`, `hover`, `pressed`, `disabled`, `loading`.
+- `color.button.primary` -> estados derivados del `primaryColor` de marca (`default`/`loading` = brand; hover/pressed/disabled vía `color-mix`). `color.button.secondary` -> escala fija secondary.
+- `zIndex.floating` -> FABs / botones flotantes (entre header y dropdown).
 - `color.danger` / `color.success` / `color.warning` -> `default`, `hover`, `pressed`, `disabled`, `loading` + `soft` (`text`, `background`, `border`). `danger.highlight` para números/indicadores.
 - `color.info.soft` -> `text`, `background`, `border`.
 - `color.text` -> `primary`, `secondary`, `tertiary` (= brand), `placeholder`.
-- `color.background` -> `primary`, `secondary`, `tertiary`, `quaternary`.
+- `color.background` -> `primary`, `secondary`, `tertiary`, `quaternary`, `sheet` (`#0A0A0A`), `sheetMuted` (`rgba(18, 18, 24, 0.95)` footers de sheet).
+- `radii.xxLarge` -> 40px (top corners de bottom sheets).
+- `shadows.sheet` -> sombra superior de bottom sheets.
 - `color.overlay` -> backdrop de modales.
-- `color.border` -> `primary` (layout), `field` (borde default de inputs/tags).
+- `color.border` -> `primary`, `soft` (`rgba(255,255,255,0.05)`), `field`.
 - `typography.fontSizes.*` (usar `pxToRem`), `typography.fontWeight.*`, `typography.fontFamily.*`.
 - `radii.*` (`medium` = 8px), `shadows.*`, `zIndex.*`, `transitions.*`, `breakpoints.*`.
 - `spacing(factor)` -> `factor * 8px` (sistema de 8px). Ej: `spacing(2)` = `16px`.

@@ -2,6 +2,7 @@ import { ThemeColorsSection } from "../components/themeColorsSection/ThemeColors
 import { IconsSection } from "../components/iconsSection/IconsSection";
 import { ButtonSection } from "../components/buttonSection/ButtonSection";
 import { IconButtonSection } from "../components/iconButtonSection/IconButtonSection";
+import { FloatingButtonSection } from "../components/floatingButtonSection/FloatingButtonSection";
 import { CarouselSection } from "../components/carouselSection/CarouselSection";
 import { TextInputSection } from "../components/textInputSection/TextInputSection";
 import { TagSection } from "../components/tagSection/TagSection";
@@ -44,6 +45,7 @@ export const DocsComponentsPage = () => {
           <IconsSection />
           <ButtonSection />
           <IconButtonSection />
+          <FloatingButtonSection />
           <CarouselSection />
           <TagSection />
           <TextInputSection />

@@ -6,6 +6,7 @@ export const buttonVariants: ButtonVariant[] = [
     "primary",
     "secondary",
     "ghost",
+    "contrast",
     "danger",
     "success",
     "warning",
@@ -15,6 +16,7 @@ export const buttonMainVariants: ButtonVariant[] = [
     "primary",
     "secondary",
     "ghost",
+    "contrast",
 ];
 
 export const buttonStatusVariants: ButtonVariant[] = [
@@ -29,6 +31,7 @@ import { ArrowForwardIcon } from "@assets/icons";
 <Button>Button</Button>
 <Button variant="secondary" size="L">Guardar</Button>
 <Button variant="ghost" size="S">Cancelar</Button>
+<Button variant="contrast">Emitir ticket</Button>
 <Button variant="danger" onClick={handleDelete}>Eliminar</Button>
 <Button variant="success" fullWidth>Confirmar</Button>
 <Button variant="warning" disabled>Warning</Button>
@@ -39,9 +42,9 @@ import { ArrowForwardIcon } from "@assets/icons";
 export const buttonProps = [
     {
         name: "variant",
-        type: '"primary" | "secondary" | "ghost" | "danger" | "success" | "warning"',
+        type: '"primary" | "secondary" | "ghost" | "contrast" | "danger" | "success" | "warning"',
         default: '"primary"',
-        description: "Estilo/color del botón.",
+        description: "Estilo/color del botón. contrast = fondo claro + texto oscuro.",
     },
     {
         name: "size",
@@ -245,6 +248,78 @@ export const iconButtonSizeRows = [
     { size: "S", box: "32px", icon: "16px" },
     { size: "M", box: "40px", icon: "20px" },
     { size: "L", box: "48px", icon: "24px" },
+] as const;
+
+export const floatingButtonUsageCode = `import { FloatingButton } from "@shared/ui/buttons/floatingButton/FloatingButton";
+import { TicketIcon, ChatIcon, BellIcon } from "@assets/icons";
+
+<FloatingButton icon={<TicketIcon />} aria-label="Tickets" onClick={handleOpen} />
+<FloatingButton icon={<ChatIcon />} variant="surface" side="left" aria-label="Chat" />
+<FloatingButton icon={<BellIcon />} size="L" offset={24} aria-label="Alertas" />`;
+
+export const floatingButtonProps = [
+    {
+        name: "icon",
+        type: "ReactNode",
+        default: "—",
+        description: "Ícono del botón (cualquier icono de @assets/icons).",
+    },
+    {
+        name: "aria-label",
+        type: "string",
+        default: "—",
+        description: "Label accesible (obligatorio; es icon-only).",
+    },
+    {
+        name: "variant",
+        type: '"brand" | "surface"',
+        default: '"brand"',
+        description: "brand = color de marca; surface = fondo sutil.",
+    },
+    {
+        name: "side",
+        type: '"right" | "left"',
+        default: '"right"',
+        description: "Lado de la pantalla donde flota el botón.",
+    },
+    {
+        name: "size",
+        type: '"M" | "L"',
+        default: '"M"',
+        description: "Preset: M 56/28, L 64/32 (box/icon).",
+    },
+    {
+        name: "position",
+        type: '"fixed" | "relative"',
+        default: '"fixed"',
+        description: "fixed = flota en viewport; relative = inline (útil en docs/preview).",
+    },
+    {
+        name: "offset",
+        type: "number",
+        default: "16",
+        description: "Distancia al borde en px (solo con position fixed).",
+    },
+    {
+        name: "iconSize",
+        type: "number",
+        default: "—",
+        description: "Tamaño del ícono en px (override del preset).",
+    },
+    {
+        name: "...rest",
+        type: "ButtonHTMLAttributes",
+        default: "—",
+        description: "Props nativas de <button> (onClick, disabled, etc.).",
+    },
+] as const;
+
+export const floatingButtonVariants = ["brand", "surface"] as const;
+export const floatingButtonSizes = ["M", "L"] as const;
+
+export const floatingButtonSizeRows = [
+    { size: "M", box: "56px", icon: "28px" },
+    { size: "L", box: "64px", icon: "32px" },
 ] as const;
 
 export const textInputTypes = ["text", "email", "password", "number", "tel"] as const;
@@ -577,7 +652,7 @@ export const offCanvasProps = [
     },
     {
         name: "side",
-        type: '"left" | "right"',
+        type: '"left" | "right" | "bottom"',
         default: '"left"',
         description: "Lado desde el que entra el panel.",
     },
@@ -585,7 +660,20 @@ export const offCanvasProps = [
         name: "width",
         type: "number",
         default: "300",
-        description: "Ancho del panel en px (capado a 85vw).",
+        description: "Ancho del panel en px (left/right; capado a 85vw).",
+    },
+    {
+        name: "height",
+        type: "number",
+        default: "680",
+        description: "Alto del panel en px (solo bottom; capado a 90dvh).",
+    },
+    {
+        name: "surface",
+        type: '"default" | "sheet"',
+        default: '"default"',
+        description:
+            "sheet = bottom sheet (radius 40, border, background.sheet, shadows.sheet).",
     },
     {
         name: "children",
@@ -601,7 +689,7 @@ export const offCanvasProps = [
     },
 ] as const;
 
-export const offCanvasSides = ["left", "right"] as const;
+export const offCanvasSides = ["left", "right", "bottom"] as const;
 
 export const countryFlagUsageCode = `import { CountryFlag } from "@shared/ui/flags/countryFlag/CountryFlag";
 

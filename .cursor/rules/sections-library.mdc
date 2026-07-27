@@ -28,3 +28,14 @@ alwaysApply: true
 
 - Las secciones se arman con componentes de `@shared/ui` + tokens del theme.
 - No hardcodear colores/espaciados que existan en el theme.
+
+## Sync con marca blanca
+
+La fuente de prueba suele ser el template white-label. Cuando llegue un cambio de `shared/ui`, `Theme` o iconos desde ahí:
+
+1. Portá el código a `src/shared/` (o `src/assets/icons`).
+2. Exportá lo público desde `src/library/index.ts`.
+3. Documentá en `/docs_components` (o `/docs_sections` si es sección).
+4. Bump/tag al publicar para que el template pueda consumir `#vX.Y.Z`.
+
+No dejar la lib desfasada respecto a shared/theme ya estabilizados en el template.

@@ -50,11 +50,11 @@ export const createTheme = (primaryColor: string = DEFAULT_PRIMARY) => {
 
       button: {
         primary: {
-          default: "#E91E91",
-          hover: "#EC3EA0",
-          pressed: "#B61771",
-          disabled: "#811854",
-          loading: "#E91E91",
+          default: primaryColor,
+          hover: `color-mix(in srgb, ${primaryColor} 85%, white)`,
+          pressed: `color-mix(in srgb, ${primaryColor} 72%, black)`,
+          disabled: `color-mix(in srgb, ${primaryColor} 45%, black)`,
+          loading: primaryColor,
         },
         secondary: {
           default: "#8B3A8B",
@@ -125,12 +125,15 @@ export const createTheme = (primaryColor: string = DEFAULT_PRIMARY) => {
         secondary: "rgba(255, 255, 255, 0.05)",
         tertiary: primaryColor,
         quaternary: "rgba(255, 255, 255, 0.20)",
+        sheet: "#0A0A0A",
+        sheetMuted: "rgba(18, 18, 24, 0.95)",
       },
 
       overlay: "rgba(0, 0, 0, 0.6)",
 
       border: {
         primary: "rgba(255, 255, 255, 0.10)",
+        soft: "rgba(255, 255, 255, 0.05)",
         field: "#343434",
       },
     },
@@ -183,6 +186,7 @@ export const createTheme = (primaryColor: string = DEFAULT_PRIMARY) => {
       medium: "0 4px 6px rgba(0, 0, 0, 0.16)",
       large: "0 10px 20px rgba(0, 0, 0, 0.19)",
       xLarge: "0 8px 30px rgba(0,0,0,.15)",
+      sheet: "0 -20px 50px 0 rgba(0, 0, 0, 0.50)",
     },
 
     radii: {
@@ -191,6 +195,7 @@ export const createTheme = (primaryColor: string = DEFAULT_PRIMARY) => {
       medium: pxToRem(8),
       large: pxToRem(12),
       xLarge: pxToRem(16),
+      xxLarge: pxToRem(40),
       pill: "999px",
       circle: "50%",
     },
@@ -198,6 +203,7 @@ export const createTheme = (primaryColor: string = DEFAULT_PRIMARY) => {
     zIndex: {
       base: 0,
       header: 100,
+      floating: 150,
       dropdown: 200,
       overlay: 300,
       modal: 400,

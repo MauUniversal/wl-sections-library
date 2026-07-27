@@ -45,6 +45,7 @@ export type {
 } from "@sections/home";
 
 export { Button } from "@shared/ui/buttons/button/Button";
+export { FloatingButton } from "@shared/ui/buttons/floatingButton/FloatingButton";
 export { IconButton } from "@shared/ui/buttons/iconButton/IconButton";
 export { Carousel } from "@shared/ui/carousels/carousel/Carousel";
 export { GlobalContainer } from "@shared/ui/containers/globalContainer/GlobalContainer";
@@ -53,5 +54,5 @@ export type { CountryCode } from "@shared/ui/flags/countryFlag/CountryFlag";
 export { Switch } from "@shared/ui/inputs/switch/Switch";
 export { TextInput } from "@shared/ui/inputs/textInput/TextInput";
 export { OffCanvas } from "@shared/ui/overlays/offCanvas/OffCanvas";
-export type { OffCanvasSide } from "@shared/ui/overlays/offCanvas/OffCanvas";
+export type { OffCanvasSide, OffCanvasSurface } from "@shared/ui/overlays/offCanvas/OffCanvas";
 export { Tag } from "@shared/ui/tags/tag/Tag";

@@ -2,7 +2,7 @@ import { IoMenu, IoSearchOutline, IoFlagOutline, IoChevronDown, IoChevronBack, I
 import { TbWallet, TbTrendingUp, TbHeadphones } from "react-icons/tb";
 import { HiMiniArrowDownTray } from "react-icons/hi2";
 import { FiBell, FiUser, FiFacebook, FiYoutube, FiBookOpen, FiEye, FiEyeOff, FiInstagram, FiPercent } from "react-icons/fi";
-import { LuDices, LuTrophy, LuTv, LuTicket, LuSparkles, LuFlame, LuUsers } from "react-icons/lu";
+import { LuDices, LuTrophy, LuTv, LuTicket, LuSparkles, LuFlame, LuUsers, LuHistory } from "react-icons/lu";
 import { PiCirclesFourFill, PiBroadcastBold, PiChat } from "react-icons/pi";
 import { RiTwitterLine } from "react-icons/ri";
 import { HiOutlineMail } from "react-icons/hi";
@@ -38,6 +38,7 @@ export const BookOpenIcon = FiBookOpen;
 export const ArrowForwardIcon = IoIosArrowForward;
 export const PlayIcon = IoIosPlay;
 export const TicketIcon = LuTicket;
+export const HistoryIcon = LuHistory;
 export const EyeIcon = FiEye;
 export const EyeOffIcon = FiEyeOff;
 export const LoadingSpinnerIcon = ImSpinner2;

@@ -7,6 +7,7 @@ export type ButtonVariant =
     | "primary"
     | "secondary"
     | "ghost"
+    | "contrast"
     | "danger"
     | "success"
     | "warning";
@@ -111,6 +112,28 @@ const ghostVariant = (theme: DefaultTheme, $loading?: boolean) => {
     `;
 };
 
+const contrastVariant = (theme: DefaultTheme, $loading?: boolean) => css`
+    color: ${theme.color.neutral[900]};
+    background: ${$loading ? theme.color.neutral[100] : theme.color.neutral[50]};
+    border: none;
+
+    ${!$loading &&
+    css`
+        &:not(:disabled):hover {
+            background: ${theme.color.neutral[100]};
+        }
+
+        &:not(:disabled):active {
+            background: ${theme.color.neutral[200]};
+        }
+    `}
+
+    &:disabled {
+        background: ${$loading ? theme.color.neutral[100] : theme.color.neutral[300]};
+        color: ${theme.color.neutral[600]};
+    }
+`;
+
 const getVariantStyles = (
     $variant: ButtonVariant,
     theme: DefaultTheme,
@@ -127,6 +150,8 @@ const getVariantStyles = (
             return filledVariant(theme.color.warning, theme, $loading);
         case "ghost":
             return ghostVariant(theme, $loading);
+        case "contrast":
+            return contrastVariant(theme, $loading);
         case "primary":
         default:
             return filledVariant(theme.color.button.primary, theme, $loading);

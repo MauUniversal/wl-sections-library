@@ -5,15 +5,18 @@ import {
     OffCanvasPanelElement,
     OffCanvasRootElement,
     type OffCanvasSide,
+    type OffCanvasSurface,
 } from "./OffCanvas.elements";
 
-export type { OffCanvasSide };
+export type { OffCanvasSide, OffCanvasSurface };
 
 interface OffCanvasProps {
     open: boolean;
     onClose: () => void;
     side?: OffCanvasSide;
+    surface?: OffCanvasSurface;
     width?: number;
+    height?: number;
     children: ReactNode;
     "aria-label"?: string;
 }
@@ -22,7 +25,9 @@ export const OffCanvas = ({
     open,
     onClose,
     side = "left",
+    surface = "default",
     width = 300,
+    height = 680,
     children,
     "aria-label": ariaLabel = "Panel",
 }: OffCanvasProps) => {
@@ -70,7 +75,9 @@ export const OffCanvas = ({
             <OffCanvasPanelElement
                 $open={open}
                 $side={side}
+                $surface={surface}
                 $width={width}
+                $height={height}
                 role="dialog"
                 aria-modal={open || undefined}
                 aria-label={ariaLabel}
