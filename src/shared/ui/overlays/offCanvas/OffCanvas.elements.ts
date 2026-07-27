@@ -12,6 +12,7 @@ export const OffCanvasRootElement = styled.div<OffCanvasRootElementProps>`
     position: fixed;
     inset: 0;
     z-index: ${({ theme }) => theme.zIndex.modal};
+    overflow: hidden;
     pointer-events: ${({ $open }) => ($open ? "auto" : "none")};
 `;
 
@@ -66,7 +67,8 @@ const bottomPanelStyles = css<OffCanvasPanelElementProps>`
         const radius = $surface === "sheet" ? theme.radii.xxLarge : theme.radii.xLarge;
         return `${radius} ${radius} 0 0`;
     }};
-    transform: ${({ $open }) => ($open ? "translateY(0)" : "translateY(100%)")};
+    transform: ${({ $open }) =>
+        $open ? "translateY(0)" : `translateY(calc(100% + ${pxToRem(80)}))`};
 `;
 
 export const OffCanvasPanelElement = styled.aside<OffCanvasPanelElementProps>`
@@ -79,9 +81,15 @@ export const OffCanvasPanelElement = styled.aside<OffCanvasPanelElementProps>`
         $surface === "sheet"
             ? theme.color.background.sheet
             : theme.color.background.primary};
-    box-shadow: ${({ theme, $surface }) =>
-        $surface === "sheet" ? theme.shadows.sheet : theme.shadows.large};
-    transition: transform ${({ theme }) => theme.transitions.normal};
+    box-shadow: ${({ theme, $surface, $open }) => {
+        if (!$open) {
+            return "none";
+        }
+        return $surface === "sheet" ? theme.shadows.sheet : theme.shadows.large;
+    }};
+    transition:
+        transform ${({ theme }) => theme.transitions.normal},
+        box-shadow ${({ theme }) => theme.transitions.normal};
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
     ${({ $side }) => ($side === "bottom" ? bottomPanelStyles : sidePanelStyles)}
